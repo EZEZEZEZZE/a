@@ -1895,7 +1895,7 @@ runcode(function()
     local Enabled = false
     local NewGravity = {["Value"] = 0}
     local FastFly = Tabs["Blatant"]:CreateToggle({
-        ["Name"] = "Gravity",
+        ["Name"] = "FastFLY",
         ["Callback"] = function(Callback)
             Enabled = Callback
             if Enabled then
