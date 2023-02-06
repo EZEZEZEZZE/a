@@ -1890,6 +1890,34 @@ runcode(function()
     })
 end)
 
+
+runcode(function()
+    local Enabled = false
+    local NewGravity = {["Value"] = 0}
+    local FastFly = Tabs["Blatant"]:CreateToggle({
+        ["Name"] = "Gravity",
+        ["Callback"] = function(Callback)
+            Enabled = Callback
+            if Enabled then
+                spawn(function()
+                    repeat task.wait() until getqueuetype() ~= "bedwars_test"
+                        if not getqueuetype():find("skywars") then return end
+                        game.Workspace.Gravity = 0
+					lplr.Character.HumanoidRootPart.CFrame = lplr.Character.HumanoidRootPart.CFrame + Vector3.new(567567567,67567567,567567567)
+					wait(0.5)
+					for i = 1,20 do wait()
+						lplr.Character.HumanoidRootPart.CFrame = lplr.Character.HumanoidRootPart.CFrame + lplr.Character.HumanoidRootPart.CFrame.lookVector * 10
+					end
+			      FastFly["ToggleButton"](false)
+                    end
+                end)
+            else
+                game:GetService("Workspace").Gravity = 196.2
+            end
+        end
+    })
+end)
+
 runcode(function()
     local Enabled = false
     local Funnyfly = Tabs["Blatant"]:CreateToggle({
