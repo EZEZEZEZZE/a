@@ -333,9 +333,11 @@ function getNearestPlayer(maxdist)
     return obj
 end
 
-function getQueueType()
-    local state = bedwars["ClientHandlerStore"]:getState()
-    return state.Game.queueType or "bedwars_test"
+local function getqueuetype()
+    local queuetype = "bedwars_test"
+    pcall(function()
+        queuetype = bedwars["ClientStoreHandler"]:getState().Game.queueType
+    end)
 end
 function getitem(itm)
     if IsAlive(lplr) and lplr.Character:FindFirstChild("InventoryFolder").Value:FindFirstChild(itm) then
@@ -1895,22 +1897,19 @@ runcode(function()
     local Enabled = false
     local NewGravity = {["Value"] = 0}
     local FastFly = Tabs["Blatant"]:CreateToggle({
-        ["Name"] = "FastFLY",
+        ["Name"] = "FastFly",
         ["Callback"] = function(Callback)
             Enabled = Callback
             if Enabled then
                 spawn(function()
-                    repeat task.wait() until getqueuetype() ~= "bedwars_test"
-                        if not getqueuetype():find("skywars") then return end
-                        game.Workspace.Gravity = 0
+                    lib["ToggleFuncs"]["FastFly"](true)
+                    game.Workspace.Gravity = 0
 					lplr.Character.HumanoidRootPart.CFrame = lplr.Character.HumanoidRootPart.CFrame + Vector3.new(567567567,67567567,567567567)
 					wait(0.5)
-					for i = 1,20 do wait()
-						lplr.Character.HumanoidRootPart.CFrame = lplr.Character.HumanoidRootPart.CFrame + lplr.Character.HumanoidRootPart.CFrame.lookVector * 10
+					for i = 1,15 do wait()
+						lplr.Character.HumanoidRootPart.CFrame = lplr.Character.HumanoidRootPart.CFrame + lplr.Character.HumanoidRootPart.CFrame.lookVector * 7
 					end
-			      FastFly["ToggleButton"](false)
-                    end
-                end)
+                 end)
             else
                 game:GetService("Workspace").Gravity = 196.2
             end
