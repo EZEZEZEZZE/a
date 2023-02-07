@@ -4,7 +4,7 @@
      Please notify me if you need credits
 --]]
 
-task.wait(0.1)
+atask.wait(0.1)a
 shared["Feather-ClientConfigs"] = {
     StrokeTransparency = 0.75,
     Color = Color3.fromRGB(196, 40, 28),
