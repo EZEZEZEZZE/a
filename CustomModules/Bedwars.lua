@@ -2256,9 +2256,9 @@ runcode(function()
     end
     local function getpos()
         local primpart = lplr.Character.PrimaryPart
-        local x = math.round(primpart.Position.X/3)
-        local y = math.round(primpart.Position.Y/3) - 1
-        local z = math.round(primpart.Position.Z/3)
+        local x = math.round(primpart.Position.X/3)-0.3 + 0.4
+        local y = math.round(primpart.Position.Y/3)-1  + 0.1
+        local z = math.round(primpart.Position.Z/3)-0.3 + 0.2
         local realexpand = Expand["Value"] + 1
         return Vector3.new(x,y,z) + (lplr.Character:FindFirstChild("HumanoidRootPart").CFrame.LookVector * math.round(Expand["Value"]))
     end
