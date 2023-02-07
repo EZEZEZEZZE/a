@@ -1012,7 +1012,7 @@ runcode(function()
                 spawn(function()
                     repeat
                         task.wait(3)
-                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame + game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.lookVector * 13
+                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame + game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.lookVector * 3
                         spawn(function()
                              if Notifications["Enabled"] then							
 				  createnotification("Feather", "Boosted", 4)
@@ -1114,12 +1114,12 @@ runcode(function()
                                 for i = 1,7 do
                                     task.wait()
                                     if not Enabled then return end
-                                    velo.Velocity = Vector3.new(0,i*1.25+(flyup and 20 or 0)+(flydown and -20 or 0),0)
+                                    velo.Velocity = Vector3.new(0,i*1.30+(flyup and 11 or 0)+(flydown and -11 or 0),0)
                                 end
                                 for i = 1,7 do
                                     task.wait()
                                     if not Enabled then return end
-                                    velo.Velocity = Vector3.new(0,-i*1+(flyup and 20 or 0)+(flydown and -20 or 0),0)
+                                    velo.Velocity = Vector3.new(0,-i*1+(flyup and 11 or 0)+(flydown and -11 or 0),0)
                                 end
                             elseif Mode["Value"] == "Funny" then
                                 for i = 1,15 do
@@ -1893,7 +1893,7 @@ runcode(function()
 end)
 
 
-runcode(function()
+--[[runcode(function()
     local Enabled = false
     local NewGravity = {["Value"] = 0}
     local FastFly = Tabs["Blatant"]:CreateToggle({
@@ -1915,7 +1915,7 @@ runcode(function()
             end
         end
     })
-end)
+end)--]]
 
 runcode(function()
     local Enabled = false
@@ -1964,7 +1964,7 @@ runcode(function()
 end)
 
 
-runcode(function()
+--[[runcode(function()
     local Enabled = false
     local MidTP = Tabs["Utility"]:CreateToggle({
         ["Name"] = "MidTP",
@@ -1986,7 +1986,7 @@ runcode(function()
                 end
           end
     })
-end)
+end)--]]
 
 runcode(function() -- Credits to lxvl xv#6969
 	local UserInputService = game:GetService("UserInputService")
