@@ -2062,6 +2062,35 @@ runcode(function()
     })
 end)
 
+
+runcode(function()
+    local Connection
+    local Enabled = false
+    local Noclip = Tabs["Render"]:CreateToggle({
+        ["Name"] = "Noclip",
+        ["Callback"] = function(Callback)
+                 Enabled = Callback
+                 if Enabled then
+                    Connection = uis.InputBegan:Connect(function(input)
+                        if input.KeyCode == Enum.KeyCode.LeftShift then
+                            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame + game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.lookVector * (TP["Value"])
+                  end
+            end)
+            else
+                Connection:Disconnect()
+            end
+        end
+    })
+ TP = Noclip:CreateSlider({
+        ["Name"] = "Distance",
+        ["Function"] = function() end,
+        ["Min"] = 0,
+        ["Max"] = 5,
+        ["Default"] = 1,
+        ["Round"] = 1
+    })
+end)
+
 runcode(function()
     local JumpConnection
     local infjump = {["Enabled"] = false}
