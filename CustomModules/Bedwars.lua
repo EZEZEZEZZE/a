@@ -1205,7 +1205,7 @@ runcode(function()
     })
 end)
 
-runcode(function()
+--[[runcode(function()
     function GetBeds()
         local beds = {}
         for i,v in pairs(game:GetService("Workspace"):GetChildren()) do
@@ -1273,7 +1273,7 @@ runcode(function()
             end
         end
     })
-end)
+end)--]]
 
 
 runcode(function()
@@ -1823,7 +1823,7 @@ runcode(function()
                         for i = 1,20 do
                             task.wait()
                             if not Enabled then return end
-                            velo.Velocity = velo.Velocity + Vector3.new(0,i*0.40,0)
+                            velo.Velocity = velo.Velocity + Vector3.new(0,i*0.30,0)
                         end
                     end
                 end)
@@ -2227,9 +2227,9 @@ runcode(function()
     end
     local function getpos()
         local primpart = lplr.Character.PrimaryPart
-        local x = math.round(primpart.Position.X/3)-0.3 + 0.4
-        local y = math.round(primpart.Position.Y/3)-1  + 0.1
-        local z = math.round(primpart.Position.Z/3)-0.3 + 0.2
+        local x = math.round(primpart.Position.X/3)
+        local y = math.round(primpart.Position.Y/3) - 1
+        local z = math.round(primpart.Position.Z/3)
         local realexpand = Expand["Value"] + 1
         return Vector3.new(x,y,z) + (lplr.Character:FindFirstChild("HumanoidRootPart").CFrame.LookVector * math.round(Expand["Value"]))
     end
