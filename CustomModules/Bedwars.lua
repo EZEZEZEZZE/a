@@ -1549,7 +1549,7 @@ end)
 
 runcode(function()
     local Enabled = false
-    local AimAssist = Tabs["Utility"]:CreateToggle({
+    local TexturePack = Tabs["Utility"]:CreateToggle({
         ["Name"] = "TexturePack",
         ["Callback"] = function(Callback)
             Enabled = Callback
@@ -1567,8 +1567,8 @@ runcode(function()
 		Connection = cam.Viewmodel.ChildAdded:Connect(function(v)
 		if v:FindFirstChild("Handle") then
 			pcall(function()
-				v:FindFirstChild("Handle").Size = v:FindFirstChild("Handle").Size / 1.5
-			end)
+				v:FindFirstChild("Handle").Size = v:FindFirstChild("Handle").Size / tostring(DisVal["Value"])
+		end)
                 shared.con = game:GetService("ReplicatedStorage").ChildAdded:Connect(function(v)
                     for i,x in pairs(obj:GetChildren()) do
                         x:Clone().Parent = v
@@ -1578,6 +1578,14 @@ runcode(function()
                 loadstring(game:HttpGet("https://raw.githubusercontent.com/vxpeprivate/CometV2/main/Modules/Texture.lua"))()
             end
         end
+    })
+DisVal = TexturePack:CreateSlider({
+        ["Name"] = "Range",
+        ["Function"] = function() end,
+        ["Min"] = 0,
+        ["Max"] = 21,
+        ["Default"] = 21,
+        ["Round"] = 1
     })
 end)
 
