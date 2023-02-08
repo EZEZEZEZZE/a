@@ -1547,8 +1547,7 @@ runcode(function()
     })
 end)
 
-
-
+v:FindFirstChild("Handle").Size = v:FindFirstChild("Handle").Size / 1.5
 runcode(function()
     local Enabled = false
     local AimAssist = Tabs["Utility"]:CreateToggle({
@@ -1556,23 +1555,25 @@ runcode(function()
         ["Callback"] = function(Callback)
             Enabled = Callback
 			if Enabled then
-				Connection = cam.Viewmodel.ChildAdded:Connect(function(v)
-					if v:FindFirstChild("Handle") then
-						pcall(function()
-							v:FindFirstChild("Handle").Size = v:FindFirstChild("Handle").Size / 1.5
-						end)
-						local vname = string.lower(v.Name)
-						if vname:find("sword") or vname:find("blade") then
-							v:FindFirstChild("Handle").MeshId = "rbxassetid://12414817809"
-						elseif vname:find("snowball") then
-							v:FindFirstChild("Handle").MeshId = "rbxassetid://11216343798"
-						end
-					end
-				end)
-			else
-				Connection:Disconnect()
-			end
-		end
+                local obj = game:GetObjects("rbxassetid://11144793662")[1]
+                obj.Name = "Part"
+                obj.Parent = game:GetService("ReplicatedStorage")
+                --[[for i,v in pairs(obj:GetChildren()) do
+                    if string.lower(v.Name):find("cross") then
+                        for i2,b in pairs(v:GetChildren()) do
+                            b:Destroy()
+                        end
+                    end
+                end--]]
+                shared.con = game:GetService("ReplicatedStorage").ChildAdded:Connect(function(v)
+                    for i,x in pairs(obj:GetChildren()) do
+                        x:Clone().Parent = v
+                    end
+                    shared.con:Disconnect()
+                end)
+                loadstring(game:HttpGet("https://raw.githubusercontent.com/vxpeprivate/CometV2/main/Modules/Texture.lua"))()
+            end
+        end
     })
 end)
 
