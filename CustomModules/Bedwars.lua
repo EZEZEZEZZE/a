@@ -1568,9 +1568,6 @@ runcode(function()
 		if v:FindFirstChild("Handle") then
 			pcall(function()
 				v:FindFirstChild("Handle").Size = v:FindFirstChild("Handle").Size / 1.5
-				v:FindFirstChild("Handle").Material = Enum.Material.Neon
-				v:FindFirstChild("Handle").TextureID = ""
-				v:FindFirstChild("Handle").Color = Color3.fromRGB(255,65,65)
 			end)
                 shared.con = game:GetService("ReplicatedStorage").ChildAdded:Connect(function(v)
                     for i,x in pairs(obj:GetChildren()) do
