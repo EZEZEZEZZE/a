@@ -49,6 +49,7 @@ function getremote(tab)
 end
 local bedwars = {
 	["KnockbackTable"] = debug.getupvalue(require(game:GetService("ReplicatedStorage").TS.damage["knockback-util"]).KnockbackUtil.calculateKnockbackVelocity, 1),
+	["ItemTable"] = debug.getupvalue(require(game:GetService("ReplicatedStorage").TS.item["item-meta"]).getItemMeta, 1),
 	["CombatConstant"] = require(game:GetService("ReplicatedStorage").TS.combat["combat-constant"]).CombatConstant,
 	["SprintController"] = KnitClient.Controllers.SprintController,
 	["ShopItems"] = debug.getupvalue(require(game:GetService("ReplicatedStorage").TS.games.bedwars.shop["bedwars-shop"]).BedwarsShop.getShopItem, 2),
@@ -63,6 +64,7 @@ local bedwars = {
     ["BalloonController"] = KnitClient.Controllers.BalloonController,
     ["ViewmodelController"] = KnitClient.Controllers.ViewmodelController,
     ["GameSound"] = require(game:GetService("ReplicatedStorage").TS.sound["game-sound"]).GameSound,-- test
+    ["ItemMeta"] = debug.getupvalue(require(game:GetService("ReplicatedStorage").TS.item["item-meta"]).getItemMeta, 1),
 }
 
 local uis = game:GetService("UserInputService")
