@@ -20,6 +20,7 @@ local ScreenGuitwo = game:GetService("CoreGui").RektskyNotificationGui
 local lplr = game:GetService("Players").LocalPlayer
 local repstorage = game:GetService("ReplicatedStorage")
 local isnetworkowner = isnetworkowner or function() return true end
+local Camera = workspace.CurrentCamera
 
 function runcode(func)
     func()
@@ -1492,7 +1493,7 @@ runcode(function()
                                             ["validate"] = {
                                                 ["raycast"] = {
                                                     ["cameraPosition"] = hashFunc(cam.CFrame.Position), 
-                                                    ["cursorDirection"] = hashFunc(Ray.new(cam.CFrame.Position, v.Character:FindFirstChild("HumanoidRootPart").Position).Unit.Direction)
+                                                    ["cursorDirection"] = hashFunc(Ray.new(cam.CFrame.Position, v.Character:GetPrimaryPartCFrame().Position).Unit.Direction
                                                 },
                                                 ["targetPosition"] = hashFunc(v.Character:FindFirstChild("HumanoidRootPart").Position),
                                                 ["selfPosition"] = hashFunc(selfPosition),
