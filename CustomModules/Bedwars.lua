@@ -2024,7 +2024,7 @@ end)
 runcode(function()
     local Enabled = false
     local Autoreport = Tabs["Render"]:CreateToggle({
-        ["Name"] = "Autoreport",
+        ["Name"] = "Autoreport ",
         ["Callback"] = function(Callback)
             Enabled = Callback
             if Enabled then
