@@ -1761,11 +1761,11 @@ runcode(function()
         end
     })
    Val = HighJump:CreateSlider({
-        ["Name"] = "Speed",
+        ["Name"] = "Val",
         ["Function"] = function() end,
         ["Min"] = 0,
-        ["Max"] = 100,
-        ["Default"] = 30,
+        ["Max"] = 1,
+        ["Default"] = 0.30,
         ["Round"] = 1
     })
 end)
@@ -2036,13 +2036,11 @@ runcode(function()
 					repeat
 						task.wait()
 						for i,v in pairs(players:GetPlayers()) do 
-							if v ~= lplr and alreadyreportedlist[v] == nil and v:GetAttribute("PlayerConnected") and checkstate(lplr) then 
 								task.wait(1)
                                                                 alreadyreportedlist[v] = true
 								bedwars["ClientHandler"]:Get(bedwars["ReportRemote"]):SendToServer(v.UserId)
 								if Notifications["Enabled"] then
 									createnotification("Autoreport", "Reported - "..v.Name, 3)
-								end
 							end
 						end
 					until not Enabled
