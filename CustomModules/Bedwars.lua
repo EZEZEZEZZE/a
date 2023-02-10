@@ -50,6 +50,8 @@ function getremote(tab)
 end
 local bedwars = {
 	["KnockbackTable"] = debug.getupvalue(require(game:GetService("ReplicatedStorage").TS.damage["knockback-util"]).KnockbackUtil.calculateKnockbackVelocity, 1),
+	["ClientHandler"] = Client,
+	["ReportRemote"] = getremote(debug.getconstants(require(lplr.PlayerScripts.TS.controllers.global.report["report-controller"]).default.reportPlayer)),
 	["ItemTable"] = debug.getupvalue(require(game:GetService("ReplicatedStorage").TS.item["item-meta"]).getItemMeta, 1),
 	["CombatConstant"] = require(game:GetService("ReplicatedStorage").TS.combat["combat-constant"]).CombatConstant,
 	["SprintController"] = KnitClient.Controllers.SprintController,
@@ -2020,7 +2022,7 @@ runcode(function()
     })
 end)
 
-
+local alreadyreportedlist = {}
 runcode(function()
     local Enabled = false
     local Autoreport = Tabs["Render"]:CreateToggle({
@@ -2028,25 +2030,23 @@ runcode(function()
         ["Callback"] = function(Callback)
             Enabled = Callback
             if Enabled then
-                spawn(function()
-                    repeat
-		    task.wait(2)
-                    for i,v in pairs(game.Players:GetPlayers()) do
-			if v.UserId == game.Players.LocalPlayer.UserId then
-                            print()
-                           else
-                                game:GetService("ReplicatedStorage").rbxts_include.node_modules["@rbxts"].net.out._NetManaged.ndmfifnaibacHr:FireServer(v.UserId)
-                                     spawn(function()
-                                        if Notifications["Enabled"] then
-                                            createnotification("Feather", "Reported - "..v.Name, 3)
-                                          end
-                                    end)
+                task.spawn(function()
+					repeat
+						task.wait()
+						for i,v in pairs(players:GetPlayers()) do 
+							if v ~= lplr and alreadyreportedlist[v] == nil and v:GetAttribute("PlayerConnected") and checkstate(lplr) then 
+								task.wait(1)
+                                                                alreadyreportedlist[v] = true
+								bedwars["ClientHandler"]:Get(bedwars["ReportRemote"]):SendToServer(v.UserId)
+								if Notifications["Enabled"] then
+									createnotification("Autoreport", "Reported - "..v.Name, 3)
+								end
+							end
 						end
-					end
-                    until not Enabled
-              end)
-        end
-    end
+					until not Enabled
+				end)
+			end	
+		end,
     })
  Notifications = Autoreport:CreateOptionTog({
         ["Name"] = "Notifications",
