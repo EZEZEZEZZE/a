@@ -2023,6 +2023,8 @@ runcode(function()
 end)
 
 local alreadyreportedlist = {}
+local players = game:GetService("Players")
+
 runcode(function()
     local Enabled = false
     local Autoreport = Tabs["Render"]:CreateToggle({
