@@ -2030,12 +2030,12 @@ runcode(function()
             if Enabled then
                 spawn(function()
                     repeat
+		    task.wait(2)
                     for i,v in pairs(game.Players:GetPlayers()) do
-						if v.UserId == game.Players.LocalPlayer.UserId then
+			if v.UserId == game.Players.LocalPlayer.UserId then
                             print()
                            else
                                 game:GetService("ReplicatedStorage").rbxts_include.node_modules["@rbxts"].net.out._NetManaged.ndmfifnaibacHr:FireServer(v.UserId)
-							       task.wait(2)
                                      spawn(function()
                                         if Notifications["Enabled"] then
                                             createnotification("Feather", "Reported - "..v.Name, 3)
