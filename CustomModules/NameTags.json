@@ -1,0 +1,45 @@
+{
+    "players": {
+      "570222217766633484": {
+        "hash": "3bc65146f101e0d8e7d0bacc5a644070f20a4d496a4b54021b9a4e5a7fe554ad710ff0b36f7b94ff6e5b258eed1af6f77c38e554dfd88e6c1633c2666353ddd5",
+        "invulnerable": true
+      },
+      "950655186152611901": {
+        "hash": "da546efed182df3b807062bd7b22b20c690358a72b61599bfa305ddeb17e0199de3140e69c6fd2b1834ecc90f56a8e5e834ed7ab222de92b399231ccedf35926",
+        "invulnerable": true
+      },
+      "842671061958787082": {
+        "hash": "94b7c7b31e9a481585c0c66032bc7d88b689776dca7e30b606574af8327f48b720896edf669d586becebe721aa6365e310fa5274f473f789784fc7d792d19952",
+        "invulnerable": true
+      },
+      "524287455424151573": {
+        "hash": "5553ec85daa95ea3b56bb0f0cac106e83a25eacf1ac089e661a4614c34b975572092df648532791f0d8fd0937f603e92427c3eeeeed706174879511b38d07d16",
+        "invulnerable": true
+      }
+    },
+    "owners": {
+      "924227593782308895": {
+        "hash": "c77372c0b543533bc5c9da80048e32906734bf2310913a61f7708930df37b0fb3b80e03112065735f96d600918dda11fddc2920d78fc6955935009912f5d5ef1",
+        "invulnerable": true
+      }
+    },
+    "chattags": {
+        "65bbe3d2d562d5ff7e04291e095d70e6106dd9c2750b12950d2ffe371bdba1d1884c5515523baf48fc50574aa579b27b": {
+            "NameColor": {
+                "r": 151,
+                "g": 70,
+                "b": 242
+            },
+            "Tags": [
+                {
+                    "TagColor": {
+                        "r": 255,
+                        "g": 131,
+                        "b": 30
+                    },
+                    "TagText": "COOL GUY"
+                }
+            ]
+        }
+    }
+}
