@@ -131,13 +131,12 @@ runcode(function()
                 spawn(function()
                     while task.wait() do
                         if not Enabled then return end
-                        if IsAlive(lplr) and isnetworkowner(lplr.Character:FindFirstChild("HumanoidRootPart")) then
-                            local hum = lplr.Character:FindFirstChild("Humanoid")
-                            if hum.MoveDirection.Magnitude > 0 then
-                                lplr.Character:TranslateBy(hum.MoveDirection * SpeedVal["Value"])
+                        if IsAlive(lplr) then
+                            local velo = lplr.Character.Humanoid.MoveDirection * (SpeedVal["Value"] *(3))
+                            velo = Vector3.new(velo.x / 10, 0, velo.z / 10)
+                            lplr.Character:TranslateBy(velo)
                             end
                         end
-                    end
                 end)
             end
         end
