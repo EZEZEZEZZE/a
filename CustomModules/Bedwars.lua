@@ -4,7 +4,7 @@
      Ham135 - Made this script 2 months ago i am just making it better and fixing it
      Please notify me if you need credits
 --]]
-
+aaa
 task.wait(0.1)
 shared["Feather-ClientConfigs"] = {
     StrokeTransparency = 0.75,
