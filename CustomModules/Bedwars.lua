@@ -19,6 +19,8 @@ local entity = loadstring(game:HttpGet("https://raw.githubusercontent.com/7Grand
 local getasset = getsynasset or getcustomasset
 local ScreenGuitwo = game:GetService("CoreGui").RektskyNotificationGui
 local lplr = game:GetService("Players").LocalPlayer
+local oldcloneroot
+
 local repstorage = game:GetService("ReplicatedStorage")
 local isnetworkowner = isnetworkowner or function() return true end
 local Camera = workspace.CurrentCamera
@@ -1411,7 +1413,8 @@ runcode(function()
                                     end)
                                     if sword ~= nil then
                                         bedwars["SwordController"].lastAttack = game:GetService("Workspace"):GetServerTimeNow() - 0.11
-                                        local selfPosition = lplr.Character.HumanoidRootPart.Position + (DistVal["Value"] > 14 and (lplr.Character.HumanoidRootPart.Position - v.Character.HumanoidRootPart.Position).magnitude > 14 and (CFrame.lookAt(lplr.Character.HumanoidRootPart.Position, v.Character.HumanoidRootPart.Position).lookVector * 4) or Vector3.new(0, 0, 0))
+                                        local selfrootpos = (oldcloneroot or entity.character.HumanoidRootPart).Position
+					local selfPosition = lplr.Character.HumanoidRootPart.Position + (DistVal["Value"] > 14 and (lplr.Character.HumanoidRootPart.Position - v.Character.HumanoidRootPart.Position).magnitude > 14 and (CFrame.lookAt(lplr.Character.HumanoidRootPart.Position, v.Character.HumanoidRootPart.Position).lookVector * 4) or Vector3.zero)
                                         HitRemote:SendToServer({
                                             ["weapon"] = sword.tool,
                                             ["entityInstance"] = v.Character,
