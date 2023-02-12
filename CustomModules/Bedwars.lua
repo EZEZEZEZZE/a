@@ -1044,7 +1044,7 @@ runcode(function()
                                 for i = 1,7 do
                                     task.wait()
                                     if not Enabled then return end
-                                    velo.Velocity = Vector3.new(0,i*1.30+(flyup and 11 or 0)+(flydown and -11 or 0),0)
+                                    velo.Velocity = Vector3.new(0,i*1.30+(flyup and 60 or 0)+(flydown and -40 or 0),0)
                                 end
                                 for i = 1,7 do
                                     task.wait()
