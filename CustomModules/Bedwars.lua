@@ -637,22 +637,6 @@ local function GFSHF_fake_script() -- DragGUI.LocalScript
 			MainFrame.Position = UDim2.new(NewPosition.X, 0, NewPosition.Y, 0)
 		end
 	end)
-
-
-end
-coroutine.wrap(GFSHF_fake_script)()
-for i4,v4 in pairs(game:GetService("ReplicatedStorage"):GetChildren()) do
-	if (v4.Name:find("Analytics") or v4.Name:find("Report")) and (v4:IsA("RemoteFunction") or v4:IsA("RemoteEvent")) then
-		v4:Remove()
-	end
-end
-
-
-if identifyexecutor and identifyexecutor() == "WeAreDevs" then
-	getgenv().getcustomasset = function(location) return "rbxasset://"..location end
-end
-
-
 local lplr = game.Players.LocalPlayer
 
 local RS = game:GetService("RunService")
@@ -693,7 +677,7 @@ Healthframe.Draggable = true
 Healthframe.Selectable = true
 Healthframe.Active = true
 
-local Health = lplr.Character.Humanoid.Health
+--local Health = lplr.Character.Humanoid.Health
 TextLabel.Parent = Healthframe
 TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 TextLabel.BackgroundTransparency = 1.00
@@ -967,6 +951,23 @@ local function HVZJVXP_fake_script() -- fpsV1_label.RainbowText
 	end
 end
 coroutine.wrap(HVZJVXP_fake_script)()
+
+end
+coroutine.wrap(GFSHF_fake_script)()
+for i4,v4 in pairs(game:GetService("ReplicatedStorage"):GetChildren()) do
+	if (v4.Name:find("Analytics") or v4.Name:find("Report")) and (v4:IsA("RemoteFunction") or v4:IsA("RemoteEvent")) then
+		v4:Remove()
+	end
+end
+
+
+if identifyexecutor and identifyexecutor() == "WeAreDevs" then
+	getgenv().getcustomasset = function(location) return "rbxasset://"..location end
+end
+
+
+
+
 
 
 
