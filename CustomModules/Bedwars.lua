@@ -1322,12 +1322,9 @@ runcode(function()
     local VMAnim = false
     local HitRemote = Client:Get(bedwars["SwordRemote"])
     local origC0 = game:GetService("ReplicatedStorage").Assets.Viewmodel.RightHand.RightWrist.C0
-    local DistVal = {["Value"] = 21}
-    local DistValV2 = {["Value"] = 21}
+    local DistVal = {["Value"] = 18}
     local AttackAnim = {["Enabled"] = true}
     local Bhop = {["Enabled"] = false}
-    local KillauraBoxes = {["Enabled"] = true}
-    local CurrentAnim = {["Value"] = "Slow"}
     local Enabled = false
     local KillAura = Tabs["Combat"]:CreateToggle({
         ["Name"] = "Aura",
@@ -1354,7 +1351,7 @@ runcode(function()
                                              bedwars["ViewmodelController"]:playAnimation(15)
                                         end
                                     end)
-				            spawn(function()
+				    spawn(function()
                                         if Bhop["Enabled"] then
                                             local character = game.Players.LocalPlayer.Character
                                             local nearest = getNearestPlayer(DistVal["Value"])
@@ -1369,7 +1366,7 @@ runcode(function()
                                         local selfrootpos = (oldcloneroot or entity.character.HumanoidRootPart).Position
 					local selfPosition = lplr.Character.HumanoidRootPart.Position + (DistVal["Value"] > 14 and (lplr.Character.HumanoidRootPart.Position - v.Character.HumanoidRootPart.Position).magnitude > 14 and (CFrame.lookAt(lplr.Character.HumanoidRootPart.Position, v.Character.HumanoidRootPart.Position).lookVector * 5) or Vector3.zero)
                                         HitRemote:SendToServer({
-                                            ["weapon"] = sword.tool,
+                                            ["weapon"] = sword["tool"],
                                             ["entityInstance"] = v.Character,
                                             ["validate"] = {
                                                 ["raycast"] = {
@@ -1394,17 +1391,9 @@ runcode(function()
         ["Name"] = "Range",
         ["Function"] = function() end,
         ["Min"] = 0,
-        ["Max"] = 21,
-        ["Default"] = 21,
+        ["Max"] = 18,
+        ["Default"] = 18,
         ["Round"] = 1
-    })
-    CurrentAnim = KillAura:CreateDropDown({
-        ["Name"] = "VMAnimation",
-        ["Function"] = function(v) 
-            CurrentAnim["Value"] = v
-        end,
-        ["List"] = {"Slow","Weird","Self","Butcher","ExhibitionOld"},
-        ["Default"] = "Butcher"
     })
     AttackAnim = KillAura:CreateOptionTog({
         ["Name"] = "Animation",
@@ -1418,13 +1407,6 @@ runcode(function()
         ["Default"] = true,
         ["Func"] = function(v)
             Bhop["Enabled"] = v
-        end
-    })
-    KillauraBoxes = KillAura:CreateOptionTog({
-        ["Name"] = "KillauraBoxes",
-        ["Default"] = true,
-        ["Func"] = function(v)
-            KillauraBoxes["Enabled"] = v
         end
     })
 end)
