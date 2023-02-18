@@ -344,12 +344,11 @@ function getNearestPlayer(maxdist)
     return obj
 end
 
-local function getqueuetype()
-    local queuetype = "bedwars_test"
-    pcall(function()
-        queuetype = bedwars["ClientStoreHandler"]:getState().Game.queueType
-    end)
+function getQueueType()
+    local state = bedwars["ClientHandlerStore"]:getState()
+    return state.Game.queueType or "bedwars_test"
 end
+
 function getitem(itm)
     if IsAlive(lplr) and lplr.Character:FindFirstChild("InventoryFolder").Value:FindFirstChild(itm) then
         return true
