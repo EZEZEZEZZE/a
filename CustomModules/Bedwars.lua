@@ -1320,30 +1320,6 @@ runcode(function()
         end
         return returning
     end
-    local Anims = {
-        ["Slow"] = {
-            {CFrame = CFrame.new(0, 0, 0) * CFrame.Angles(math.rad(220), math.rad(100), math.rad(100)),Time = 0.25},
-            {CFrame = CFrame.new(0, 0, 0) * CFrame.Angles(math.rad(0), math.rad(0), math.rad(0)), Time = 0.25}
-        },
-        ["Weird"] = {
-            {CFrame = CFrame.new(0, 0, 1.5) * CFrame.Angles(math.rad(0), math.rad(0), math.rad(0)),Time = 0.25},
-            {CFrame = CFrame.new(0, 0, -1.5) * CFrame.Angles(math.rad(0), math.rad(0), math.rad(0)),Time = 0.25},
-            {CFrame = CFrame.new(0, 0, 0) * CFrame.Angles(math.rad(0), math.rad(0), math.rad(0)), Time = 0.25}
-        },
-        ["Self"] = {
-            {CFrame = CFrame.new(0, 0, 0) * CFrame.Angles(math.rad(-90), math.rad(90), math.rad(90)),Time = 0.25},
-            {CFrame = CFrame.new(0, 0, 0) * CFrame.Angles(math.rad(0), math.rad(0), math.rad(0)), Time = 0.25}
-        },
-        ["Butcher"] = {
-            {CFrame = CFrame.new(-0.01, -0.01, -1.01) * CFrame.Angles(math.rad(-90), math.rad(90), math.rad(0)),Time = 0.08},
-            {CFrame = CFrame.new(-0.01, -0.01, -1.01) * CFrame.Angles(math.rad(10), math.rad(0), math.rad(-90)), Time = 0.08}
-        },
-        ["ExhibitionOld"] = {
-                    {CFrame = CFrame.new(0.5, -0.01, -1.91) * CFrame.Angles(math.rad(-51), math.rad(9), math.rad(56)), Time = 0.10},
-                    {CFrame = CFrame.new(0.5, -0.51, -1.91) * CFrame.Angles(math.rad(-51), math.rad(9), math.rad(56)), Time = 0.08},
-                    {CFrame = CFrame.new(0.5, -0.01, -1.91) * CFrame.Angles(math.rad(-51), math.rad(9), math.rad(56)), Time = 0.08}
-                }
-    }
     local VMAnim = false
     local HitRemote = Client:Get(bedwars["SwordRemote"])
     local origC0 = game:GetService("ReplicatedStorage").Assets.Viewmodel.RightHand.RightWrist.C0
@@ -1372,17 +1348,11 @@ runcode(function()
                                     spawn(function()
                                         if AttackAnim["Enabled"] then
                                             local anim = Instance.new("Animation")
-                                            anim.AnimationId = "rbxassetid://4947108314"
-                                            local loader = lplr.Character:FindFirstChild("Humanoid"):FindFirstChild("Animator")
-                                            loader:LoadAnimation(anim):Play()
-                                            if not VMAnim then
-                                                VMAnim = true
-                                                for i,v in pairs(Anims[CurrentAnim["Value"]]) do
-                                                    game:GetService("TweenService"):Create(cam.Viewmodel.RightHand.RightWrist,TweenInfo.new(v.Time),{C0 = origC0 * v.CFrame}):Play()
-                                                    task.wait(v.Time-0.01)
-                                                end
-                                                VMAnim = false
-                                            end
+                                             anim.AnimationId = "rbxassetid://4947108314"
+                                              local animator = lplr.Character:FindFirstChild("Humanoid"):FindFirstChild("Animator")
+                                              animator:LoadAnimation(anim):Play()
+                                              anim:Destroy()
+                                             bedwars["ViewmodelController"]:playAnimation(15)
                                         end
                                     end)
 				            spawn(function()
@@ -1395,25 +1365,10 @@ runcode(function()
                                           end
                                         end
                                     end)
-                                    spawn(function()
-                                        if KillauraBoxes["Enabled"] then
-                                            local nearest = getNearestPlayer(DistVal["Value"])
-                                            if nearest ~= nil and nearest.Name ~= lplr.Name then
-                                            local player = game.Players.LocalPlayer
-                                            local mouse = player:GetMouse()
-                                            _G.HeadSize = 5
-                                            v.Character.HumanoidRootPart.Size = Vector3.new(_G.HeadSize,_G.HeadSize,_G.HeadSize)
-                                            v.Character.HumanoidRootPart.Transparency = 0.7
-                                            v.Character.HumanoidRootPart.BrickColor = BrickColor.new("Really blue")
-                                            v.Character.HumanoidRootPart.Material = "Neon"
-                                            v.Character.HumanoidRootPart.CanCollide = false
-                                          end
-                                        end
-                                    end)
                                     if sword ~= nil then
                                         bedwars["SwordController"].lastAttack = game:GetService("Workspace"):GetServerTimeNow() - 0.11
                                         local selfrootpos = (oldcloneroot or entity.character.HumanoidRootPart).Position
-					local selfPosition = lplr.Character.HumanoidRootPart.Position + (DistVal["Value"] > 14 and (lplr.Character.HumanoidRootPart.Position - v.Character.HumanoidRootPart.Position).magnitude > 14 and (CFrame.lookAt(lplr.Character.HumanoidRootPart.Position, v.Character.HumanoidRootPart.Position).lookVector * 4) or Vector3.zero)
+					          local selfPosition = lplr.Character.HumanoidRootPart.Position + (DistVal["Value"] > 14 and (lplr.Character.HumanoidRootPart.Position - v.Character.HumanoidRootPart.Position).magnitude > 14 and (CFrame.lookAt(lplr.Character.HumanoidRootPart.Position, v.Character.HumanoidRootPart.Position).lookVector * 6) or Vector3.zero)
                                         HitRemote:SendToServer({
                                             ["weapon"] = sword.tool,
                                             ["entityInstance"] = v.Character,
@@ -1425,10 +1380,10 @@ runcode(function()
                                                 ["targetPosition"] = hashFunc(v.Character:FindFirstChild("HumanoidRootPart").Position),
                                                 ["selfPosition"] = hashFunc(selfPosition),
                                             }, 
-                                            ["chargedAttack"] = {["chargeRatio"] = 1},
+                                            ["chargedAttack"] = {["chargeRatio"] = 0.8},
                                         })
                                     end
-                             end
+                                end
                             end
                         end
                     end
