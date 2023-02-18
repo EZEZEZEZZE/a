@@ -1043,12 +1043,12 @@ runcode(function()
                                 for i = 1,7 do
                                     task.wait()
                                     if not Enabled then return end
-                                    velo.Velocity = Vector3.new(0,i*1.30+(flyup and 11 or 0)+(flydown and -11 or 0),0)
+                                    velo.Velocity = Vector3.new(0,i*1.30+(flyup and 50 or 0)+(flydown and -50 or 0),0)
                                 end
                                 for i = 1,7 do
                                     task.wait()
                                     if not Enabled then return end
-                                    velo.Velocity = Vector3.new(0,-i*1+(flyup and 11 or 0)+(flydown and -11 or 0),0)
+                                    velo.Velocity = Vector3.new(0,-i*1+(flyup and 50 or 0)+(flydown and -50 or 0),0)
                                 end
                             elseif Mode["Value"] == "Funny" then
                                 for i = 1,15 do
@@ -1460,17 +1460,18 @@ runcode(function()
         ["Name"] = "TexturePack",
         ["Callback"] = function(Callback)
             Enabled = Callback
-			if Enabled then
-                local obj = game:GetObjects("rbxassetid://11221092608")[1]
+            if Enabled then
+                lib["ToggleFuncs"]["TexturePack"](true)
+                local obj = game:GetObjects("rbxassetid://11144793662")[1]
                 obj.Name = "Part"
                 obj.Parent = game:GetService("ReplicatedStorage")
-                --[[for i,v in pairs(obj:GetChildren()) do
+                for i,v in pairs(obj:GetChildren()) do
                     if string.lower(v.Name):find("cross") then
                         for i2,b in pairs(v:GetChildren()) do
                             b:Destroy()
                         end
                     end
-                end--]]
+                end
                 shared.con = game:GetService("ReplicatedStorage").ChildAdded:Connect(function(v)
                     for i,x in pairs(obj:GetChildren()) do
                         x:Clone().Parent = v
