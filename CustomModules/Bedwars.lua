@@ -635,7 +635,320 @@ local function GFSHF_fake_script() -- DragGUI.LocalScript
 			MainFrame.Position = UDim2.new(NewPosition.X, 0, NewPosition.Y, 0)
 		end
 	end)
+local lplr = game.Players.LocalPlayer
 
+local RS = game:GetService("RunService")
+local frames = 0
+
+
+RS.RenderStepped:Connect(function()
+	frames = frames + 1
+end)
+
+local ScreenGui = Instance.new("ScreenGui")
+local Healthframe = Instance.new("Frame")
+local Bar = Instance.new("Frame")
+
+local TextLabel = Instance.new("TextLabel")
+local fps_label = Instance.new("TextLabel")
+local UICorner = Instance.new("UICorner")
+local UICorner_2 = Instance.new("UICorner")
+local TextLabel_2 = Instance.new("TextLabel")
+local UICorner_3 = Instance.new("UICorner")
+local fpsV1_label = Instance.new("TextLabel")
+
+
+
+--Properties:
+
+ScreenGui.Parent = game.CoreGui
+
+Healthframe.Name = "Healthframe"
+Healthframe.Parent = ScreenGui
+Healthframe.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+Healthframe.BackgroundTransparency = 1.00
+Healthframe.BorderColor3 = Color3.fromRGB(255, 255, 255)
+Healthframe.BorderSizePixel = 0
+Healthframe.Position = UDim2.new(1, -254, 0, -33)
+Healthframe.Size = UDim2.new(0, 204, 0, 100)
+Healthframe.Draggable = true
+Healthframe.Selectable = true
+Healthframe.Active = true
+
+--local Health = lplr.Character.Humanoid.Health
+TextLabel.Parent = Healthframe
+TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.BackgroundTransparency = 1.00
+TextLabel.BorderColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.Position = UDim2.new(0.210, 0.586317718, 0)
+TextLabel.Size = UDim2.new(0.862659395, 0, 0.635904431, 0)
+
+TextLabel.Font = Enum.Font.SourceSans
+TextLabel.Text = ""
+TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.TextSize =  6
+TextLabel.TextScaled = true
+TextLabel.TextWrapped = true
+
+
+TextLabel.TextStrokeTransparency = 0.500
+TextLabel.TextXAlignment = Enum.TextXAlignment.Right
+
+
+
+fps_label.Name = "fps_label"
+fps_label.Parent = TextLabel
+fps_label.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+fps_label.BackgroundTransparency = 1.00
+fps_label.Position = UDim2.new(0.204408348, 0, 1.22520661, 0)
+fps_label.Size = UDim2.new(0.862659395, 0, 0.635904431, 0)
+fps_label.Font = Enum.Font.SourceSans
+fps_label.Text = "1 MS"
+fps_label.TextColor3 = Color3.fromRGB(255, 255, 255)
+fps_label.TextScaled = true
+fps_label.TextSize = 26.000
+fps_label.TextStrokeTransparency = 0.500
+fps_label.TextWrapped = true
+fps_label.TextXAlignment = Enum.TextXAlignment.Right
+
+
+UICorner.Parent = Healthframe
+
+spawn(function()
+	repeat
+		wait(1)
+		local ping = tonumber(game:GetService("Stats"):FindFirstChild("PerformanceStats").Ping:GetValue())
+		ping = math.floor(ping)
+		fps_label.Text = ping.." ms"
+	until fps_label == nil
+end)
+
+fpsV1_label.Name = "fpsV1_label"
+fpsV1_label.Parent = TextLabel
+fpsV1_label.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+fpsV1_label.BackgroundTransparency = 1.000
+fpsV1_label.Position = UDim2.new(0.210360721, 0, 0.586317718, 0)
+fpsV1_label.Size = UDim2.new(0.862659395, 0, 0.635904431, 0)
+fpsV1_label.Font = Enum.Font.SourceSans
+fpsV1_label.Text = "1 FPS"
+fpsV1_label.TextColor3 = Color3.fromRGB(255, 255, 255)
+fpsV1_label.TextScaled = true
+fpsV1_label.TextSize = 26.000
+fpsV1_label.TextStrokeTransparency = 0.500
+fpsV1_label.TextWrapped = true
+fpsV1_label.TextXAlignment = Enum.TextXAlignment.Right
+UICorner.Parent = Healthframe
+
+while wait(1) do
+	fpsV1_label.Text  = frames .. " FPS"
+	frames = 0
+end
+
+
+
+Bar.Name = "Bar"
+Bar.Parent = Healthframe
+Bar.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Bar.BackgroundTransparency = 1.000
+Bar.Position = UDim2.new(-0.00481040822, 0, -0.00960083306, 0)
+Bar.Size = UDim2.new(0, 204, 0, 22)
+
+UICorner_2.Parent = Bar
+
+TextLabel_2.Parent = Bar
+TextLabel_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_2.BackgroundTransparency = 1.000
+TextLabel_2.Size = UDim2.new(0, 200, 0, 22)
+TextLabel_2.Font = Enum.Font.SourceSans
+TextLabel_2.Text = "Hub"
+TextLabel_2.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_2.TextSize = 24.000
+
+UICorner_3.Parent = TextLabel_2
+
+spawn(function()
+	repeat
+		wait(1)
+		local ping = tonumber(game:GetService("Stats"):FindFirstChild("PerformanceStats").Ping:GetValue())
+		ping = math.floor(ping)
+		fps_label.Text = ping.." ms"
+	until fps_label == nil
+end)
+
+-- Scripts:
+
+local function HVZJVXP_fake_script() -- fps_label.RainbowText 
+	local script = Instance.new('Script', fps_label)
+
+	local text = script.Parent
+	local add = 10
+	wait(1)
+	local k = 1
+	while k <= 255 do
+		text.TextColor3 = Color3.new(k/255,0/255,0/255)
+		k = k + add
+		wait()
+	end
+	while true do
+		k = 1
+		while k <= 255 do
+			text.TextColor3 = Color3.new(255/255,k/255,0/255)
+			k = k + add
+			wait()
+		end
+		k = 1
+		while k <= 255 do
+			text.TextColor3 = Color3.new(255/255 - k/255,255/255,0/255)
+			k = k + add
+			wait()
+		end
+		k = 1
+		while k <= 255 do
+			text.TextColor3 = Color3.new(0/255,255/255,k/255)
+			k = k + add
+			wait()
+		end
+		k = 1
+		while k <= 255 do
+			text.TextColor3 = Color3.new(0/255,255/255 - k/255,255/255)
+			k = k + add
+			wait()
+		end
+		k = 1
+		while k <= 255 do
+			text.TextColor3 = Color3.new(k/255,0/255,255/255)
+			k = k + add
+			wait()
+		end
+		k = 1
+		while k <= 255 do
+			text.TextColor3 = Color3.new(255/255,0/255,255/255 - k/255)
+			k = k + add
+			wait()
+		end
+		while k <= 255 do
+			text.TextColor3 = Color3.new(255/255 - k/255,0/255,0/255)
+			k = k + add
+			wait()
+		end
+	end
+end
+coroutine.wrap(HVZJVXP_fake_script)()
+local function KTOO_fake_script() -- TextLabel.RainbowText 
+	local script = Instance.new('Script', TextLabel)
+
+	local text = script.Parent
+	local add = 10
+	wait(1)
+	local k = 1
+	while k <= 255 do
+		text.TextColor3 = Color3.new(k/255,0/255,0/255)
+		k = k + add
+		wait()
+	end
+	while true do
+		k = 1
+		while k <= 255 do
+			text.TextColor3 = Color3.new(255/255,k/255,0/255)
+			k = k + add
+			wait()
+		end
+		k = 1
+		while k <= 255 do
+			text.TextColor3 = Color3.new(255/255 - k/255,255/255,0/255)
+			k = k + add
+			wait()
+		end
+		k = 1
+		while k <= 255 do
+			text.TextColor3 = Color3.new(0/255,255/255,k/255)
+			k = k + add
+			wait()
+		end
+		k = 1
+		while k <= 255 do
+			text.TextColor3 = Color3.new(0/255,255/255 - k/255,255/255)
+			k = k + add
+			wait()
+		end
+		k = 1
+		while k <= 255 do
+			text.TextColor3 = Color3.new(k/255,0/255,255/255)
+			k = k + add
+			wait()
+		end
+		k = 1
+		while k <= 255 do
+			text.TextColor3 = Color3.new(255/255,0/255,255/255 - k/255)
+			k = k + add
+			wait()
+		end
+		while k <= 255 do
+			text.TextColor3 = Color3.new(255/255 - k/255,0/255,0/255)
+			k = k + add
+			wait()
+		end
+	end
+end
+coroutine.wrap(KTOO_fake_script)()
+
+local function HVZJVXP_fake_script() -- fpsV1_label.RainbowText 
+	local script = Instance.new('Script', fpsV1_label)
+
+	local text = script.Parent
+	local add = 10
+	wait(1)
+	local k = 1
+	while k <= 255 do
+		text.TextColor3 = Color3.new(k/255,0/255,0/255)
+		k = k + add
+		wait()
+	end
+	while true do
+		k = 1
+		while k <= 255 do
+			text.TextColor3 = Color3.new(255/255,k/255,0/255)
+			k = k + add
+			wait()
+		end
+		k = 1
+		while k <= 255 do
+			text.TextColor3 = Color3.new(255/255 - k/255,255/255,0/255)
+			k = k + add
+			wait()
+		end
+		k = 1
+		while k <= 255 do
+			text.TextColor3 = Color3.new(0/255,255/255,k/255)
+			k = k + add
+			wait()
+		end
+		k = 1
+		while k <= 255 do
+			text.TextColor3 = Color3.new(0/255,255/255 - k/255,255/255)
+			k = k + add
+			wait()
+		end
+		k = 1
+		while k <= 255 do
+			text.TextColor3 = Color3.new(k/255,0/255,255/255)
+			k = k + add
+			wait()
+		end
+		k = 1
+		while k <= 255 do
+			text.TextColor3 = Color3.new(255/255,0/255,255/255 - k/255)
+			k = k + add
+			wait()
+		end
+		while k <= 255 do
+			text.TextColor3 = Color3.new(255/255 - k/255,0/255,0/255)
+			k = k + add
+			wait()
+		end
+	end
+end
+coroutine.wrap(HVZJVXP_fake_script)()
 
 end
 coroutine.wrap(GFSHF_fake_script)()
