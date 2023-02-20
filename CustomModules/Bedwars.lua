@@ -1674,23 +1674,6 @@ runcode(function()
                                           end
                                         end
                                     end)
-				if sword ~= nil then
-                                    game:GetService("ReplicatedStorage").rbxts_include.node_modules["@rbxts"].net.out._NetManaged.SwordHit:FireServer({
-                                        ["entityInstance"] = workspace.Model,
-                                        ["chargedAttack"] = {
-                                            ["chargeRatio"] = 0,
-                                        },
-                                        ["validate"] = {
-                                            ["selfPosition"] = {
-                                                ["value"] = Vector3.new(120.70486450195312, 73.4999771118164, 124.43724060058594),
-                                            },
-                                            ["targetPosition"] = {
-                                                ["value"] = Vector3.new(116.83763885498047, 75, 119.07923889160156),
-                                            },
-                                        },
-                                        ["weapon"] = sword["tool"],
-                                    })
-                                 end
                                     if sword ~= nil then
                                         bedwars["SwordController"].lastAttack = game:GetService("Workspace"):GetServerTimeNow() - 0.11
                                         local selfrootpos = (oldcloneroot or entity.character.HumanoidRootPart).Position
